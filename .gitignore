@@ -1,0 +1,57 @@
+# Flutter/Dart specific
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+build/
+ios/Flutter/App.framework/
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/flutter_assets/
+android/gradle.properties
+android/local.properties
+.vscode/
+/.idea/
+.DS_Store
+
+# Android specific
+**/android/build/
+**/android/local.properties
+**/android/gradlew
+**/android/gradlew.bat
+**/android/captures/
+
+# iOS specific
+**/ios/Pods/
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework/
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+
+# IntelliJ IDEA specific
+**/*.iml
+**/.idea/
+**/.idea/.name
+**/.idea/.dart
+**/.idea/libraries/
+**/.idea/modules.xml
+**/.idea/workspace.xml
+**/.idea/.gitignore
+**/.idea/.ignore
+**/.idea/dart-usage.json
+
+# Visual Studio Code specific
+**/.vscode/
+**/.history
+
+# macOS specific files
+**/.DS_Store
+
+# Flutter build cache
+.dart_tool/flutter_build/
