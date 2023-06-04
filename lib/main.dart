@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:todo_app/views/screens/task_screen.dart';
-
+import 'package:todo_app/services/app_router.dart';
+import 'package:todo_app/views/screens/tasks_screen.dart';
 import 'blocs/bloc_exports.dart';
 
 void main() async {
@@ -11,11 +11,12 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
-  runApp(const MyApp());
+  runApp(MyApp(router: AppRouter()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key, required this.router});
+  final AppRouter router;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const TaskScreen(),
+        home: const TasksScreen(),
+        onGenerateRoute: router.onGenerateRoute,
       ),
     );
   }

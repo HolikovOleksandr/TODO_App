@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/blocs/bloc/tasks_state.dart';
+import 'package:todo_app/views/screens/my_drawer.dart';
 import 'package:todo_app/views/widgets/create_task.dart';
 import 'package:todo_app/views/widgets/tasks_list.dart';
 import '../../blocs/bloc_exports.dart';
 
-class TaskScreen extends StatefulWidget {
-  const TaskScreen({super.key});
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
+  static const id = 'tasks_screen';
 
   @override
-  State<TaskScreen> createState() => _TaskScreenState();
+  State<TasksScreen> createState() => _TasksScreenState();
 }
 
-class _TaskScreenState extends State<TaskScreen> {
+class _TasksScreenState extends State<TasksScreen> {
   var titleContrler = TextEditingController();
 
   void _addTask(BuildContext context) {
@@ -42,12 +44,13 @@ class _TaskScreenState extends State<TaskScreen> {
               ),
             ],
           ),
+          drawer: const MyDrawer(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Chip(
-                label: Text('Tasks'),
-                labelStyle: TextStyle(fontSize: 18),
+              Chip(
+                label: Text('${state.allTasks.length} Tasks'),
+                labelStyle: const TextStyle(fontSize: 18),
               ),
               TasksListWidget(tasks: tasks),
             ],
