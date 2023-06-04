@@ -18,9 +18,9 @@ class TaskTileWidget extends StatelessWidget {
       title: Text(
         task.title,
         style: TextStyle(
-          decoration:
-              task.isDone! ? TextDecoration.lineThrough : TextDecoration.none,
-        ),
+            decoration: task.isDone!
+                ? TextDecoration.lineThrough
+                : TextDecoration.none),
       ),
       leading: Checkbox(
         value: task.isDone,
@@ -29,7 +29,6 @@ class TaskTileWidget extends StatelessWidget {
         },
       ),
       trailing: IconButton(
-        color: Colors.green.shade400,
         icon: const Icon(Icons.delete),
         onPressed: () => _removeOrDeleteTask(context, task),
       ),

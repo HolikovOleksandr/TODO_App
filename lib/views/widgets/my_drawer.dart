@@ -25,12 +25,9 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
                 horizontal: 8,
                 vertical: 16,
               ),
-              color: Colors.blueAccent,
               child: Text(
                 'Task Drawer',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Colors.white,
-                    ),
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             BlocBuilder<TasksBloc, TasksState>(
@@ -62,13 +59,17 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
                 );
               },
             ),
-            Switch(
-                value: switchValue,
-                onChanged: (newValue) {
-                  setState(() {
-                    switchValue = newValue;
-                  });
-                })
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return Switch(
+                    value: state.switchValue,
+                    onChanged: (newValue) {
+                      newValue
+                          ? context.read<SwitchBloc>().add(SwitchOnEvent())
+                          : context.read<SwitchBloc>().add(SwitchOffEvent());
+                    });
+              },
+            ),
           ],
         ),
       ),
