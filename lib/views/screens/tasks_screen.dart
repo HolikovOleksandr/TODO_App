@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/blocs/bloc_exports.dart';
-import 'package:todo_app/views/screens/my_drawer.dart';
+import 'package:todo_app/views/widgets/my_drawer.dart';
 import 'package:todo_app/views/widgets/create_task.dart';
 import 'package:todo_app/views/widgets/tasks_list.dart';
 
@@ -43,7 +43,7 @@ class _TasksScreenState extends State<TasksScreen> {
               ),
             ],
           ),
-          drawer: const MyDrawer(),
+          drawer: const MyDrawerWidget(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
