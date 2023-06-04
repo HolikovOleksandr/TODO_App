@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/blocs/bloc_exports.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/services/guid_gen.dart';
 
 class CreateTaskWidget extends StatelessWidget {
   const CreateTaskWidget({super.key});
@@ -19,8 +20,6 @@ class CreateTaskWidget extends StatelessWidget {
           TextFormField(
             autofocus: true,
             controller: titleContrler,
-            validator: (titleContrler) =>
-                titleContrler!.isEmpty ? 'Empty field' : null, // ???
             decoration: const InputDecoration(
               label: Text('Title'),
               border: OutlineInputBorder(),
@@ -30,7 +29,10 @@ class CreateTaskWidget extends StatelessWidget {
             children: [
               ElevatedButton.icon(
                 onPressed: () {
-                  var task = Task(title: titleContrler.text);
+                  var task = Task(
+                    id: GUIDGen.generate(),
+                    title: titleContrler.text,
+                  );
                   context.read<TasksBloc>().add(CreateTask(task: task));
                   Navigator.pop(context);
                 },

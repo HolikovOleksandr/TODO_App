@@ -1,6 +1,5 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
+import 'package:todo_app/blocs/bloc/tasks_state.dart';
 import 'package:todo_app/views/widgets/create_task.dart';
 import 'package:todo_app/views/widgets/tasks_list.dart';
 import '../../blocs/bloc_exports.dart';
@@ -34,11 +33,11 @@ class _TaskScreenState extends State<TaskScreen> {
         var tasks = state.allTasks;
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Hardcode title'),
+            title: const Text('My ToDo List'),
             centerTitle: true,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => _addTask(context),
                 icon: const Icon(Icons.add),
               ),
             ],
@@ -46,12 +45,9 @@ class _TaskScreenState extends State<TaskScreen> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Center(
-                child: Chip(
-                  label: Text(
-                    'Task',
-                  ),
-                ),
+              const Chip(
+                label: Text('Tasks'),
+                labelStyle: TextStyle(fontSize: 18),
               ),
               TasksListWidget(tasks: tasks),
             ],
