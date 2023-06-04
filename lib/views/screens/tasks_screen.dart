@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/blocs/bloc/tasks_state.dart';
+import 'package:todo_app/blocs/bloc_exports.dart';
 import 'package:todo_app/views/screens/my_drawer.dart';
 import 'package:todo_app/views/widgets/create_task.dart';
 import 'package:todo_app/views/widgets/tasks_list.dart';
-import '../../blocs/bloc_exports.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});

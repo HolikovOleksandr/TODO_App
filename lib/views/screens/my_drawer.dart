@@ -3,8 +3,6 @@ import 'package:todo_app/blocs/bloc_exports.dart';
 import 'package:todo_app/views/screens/recycle_bin.dart';
 import 'package:todo_app/views/screens/tasks_screen.dart';
 
-import '../../blocs/bloc/tasks_state.dart';
-
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
@@ -39,13 +37,17 @@ class MyDrawer extends StatelessWidget {
               },
             ),
             const Divider(),
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
-              child: const ListTile(
-                leading: Icon(Icons.delete),
-                title: Text('Bin'),
-                trailing: Text('0'),
-              ),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
+                  child: ListTile(
+                    leading: const Icon(Icons.delete),
+                    title: const Text('Bin'),
+                    trailing: Text('${state.binTasks.length}'),
+                  ),
+                );
+              },
             )
           ],
         ),

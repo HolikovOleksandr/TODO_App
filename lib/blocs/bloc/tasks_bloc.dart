@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:todo_app/blocs/bloc/tasks_state.dart';
 import 'package:todo_app/models/task.dart';
 import '../bloc_exports.dart';
 
@@ -10,12 +9,14 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     on<CreateTask>(_onCreateTask);
     on<UpdateTask>(_onUpdateTask);
     on<DeleteTask>(_onDeleteTask);
+    on<RemoveTask>(_onRemoveTask);
   }
 
   _onCreateTask(CreateTask event, Emitter<TasksState> emitter) {
     final state = this.state;
     emitter(TasksState(
-      allTasks: List.of(state.allTasks)..add(event.task),
+      allTasks: List.from(state.allTasks)..add(event.task),
+      binTasks: state.binTasks,
     ));
   }
 
@@ -29,13 +30,23 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
         ? allTasks.insert(index, task.copyWith(isDone: true))
         : allTasks.insert(index, task.copyWith(isDone: false));
 
-    emitter(TasksState(allTasks: allTasks));
+    emitter(TasksState(allTasks: allTasks, binTasks: state.binTasks));
+  }
+
+  _onRemoveTask(RemoveTask event, Emitter<TasksState> emitter) {
+    final state = this.state;
+    emitter(TasksState(
+      allTasks: List.from(state.allTasks)..remove(event.task),
+      binTasks: List.from(state.binTasks)
+        ..add(event.task.copyWith(isDeleted: true)),
+    ));
   }
 
   _onDeleteTask(DeleteTask event, Emitter<TasksState> emitter) {
     final state = this.state;
     emitter(TasksState(
-      allTasks: List.of(state.allTasks)..remove(event.task),
+      allTasks: state.allTasks,
+      binTasks: List.from(state.binTasks)..remove(event.task),
     ));
   }
 

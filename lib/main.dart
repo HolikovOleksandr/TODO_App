@@ -15,7 +15,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key, required this.router});
+  const MyApp({super.key, required this.router});
   final AppRouter router;
 
   @override
@@ -24,12 +24,6 @@ class MyApp extends StatelessWidget {
       create: (context) => TasksBloc(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.green,
-          ),
-          useMaterial3: true,
-        ),
         home: const TasksScreen(),
         onGenerateRoute: router.onGenerateRoute,
       ),
