@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/blocs/bloc_exports.dart';
 import 'package:todo_app/views/screens/recycle_bin.dart';
-import 'package:todo_app/views/screens/tasks_screen.dart';
+import 'package:todo_app/views/screens/tabs_screen.dart';
 
 class MyDrawerWidget extends StatefulWidget {
   const MyDrawerWidget({super.key});
@@ -34,12 +34,12 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () => Navigator.of(context).pushReplacementNamed(
-                    TasksScreen.id,
+                    TabsScreen.id,
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
                     title: const Text('My tasks'),
-                    trailing: Text('${state.allTasks.length}'),
+                    trailing: Text('${state.pendingTasks.length}'),
                   ),
                 );
               },
@@ -54,7 +54,7 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
                   child: ListTile(
                     leading: const Icon(Icons.delete),
                     title: const Text('Bin'),
-                    trailing: Text('${state.binTasks.length}'),
+                    trailing: Text('${state.removedTasks.length}'),
                   ),
                 );
               },
